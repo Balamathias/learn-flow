@@ -3,16 +3,16 @@ import { Outlet, useNavigate } from "react-router-dom"
 import Sidebar from "./dashboard/sidebar"
 import { useEffect } from "react"
 import Topbar from "./dashboard/topbar"
-// import { auth } from "../firebase/config"
+import { auth } from "../firebase/config"
 
 const Root = () => {
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
-  // useEffect(() => {
-  //   if (!auth?.currentUser) {
-  //     navigate('/auth/sign-in')
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (!auth?.currentUser) {
+      navigate('/auth/sign-in')
+    }
+  }, [])
 
   return (
     <div className="min-h-screen relative bg-gray-100 w-full">
