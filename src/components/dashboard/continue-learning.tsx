@@ -1,3 +1,4 @@
+import { LucidePlayCircle } from "lucide-react"
 import { useGetCourses } from "../../firebase/api/course"
 import { Course } from "../../types/course"
 import ContinueLearningSkeleton from "../skeletons/continue-learning-skeleton"
@@ -27,7 +28,10 @@ const ContinueLearning = () => {
 const LessonItem = ({ lesson }: { lesson: Course }) => {
     return (
         <Card className="hover:opacity-70 hover:transition-all flex flex-row items-center gap-x-2.5 p-0 rounded-2xl max-h-36 shadow-none border-none cursor-pointer">
-            <img src={lesson?.image} alt={lesson?.title} className="h-full w-32 object-cover rounded-tl-2xl rounded-bl-2xl" />
+            <div className="relative h-full w-32">
+                <img src={lesson?.image} alt={lesson?.title} className="object-cover rounded-tl-2xl rounded-bl-2xl h-full w-full" />
+                <LucidePlayCircle className="absolute fill-gray-100 top-[40%] left-[40%]" size={32} />
+            </div>
 
             <div className="flex md:p-4 p-2.5 flex-col gap-y-2">
                 <h2 className="font-semibold text-lg">{lesson?.title}</h2>

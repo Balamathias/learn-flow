@@ -11,6 +11,7 @@ import LandingPage from "../pages/landing-page";
 import CourseBuilder from "../pages/course-builder";
 import AllCourses from "../pages/all-courses";
 import CourseDetail from "../pages/course-detail";
+import Settings from "../pages/settings";
 
 const router = createBrowserRouter([
     {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
           {
             path: 'all-courses/:courseId',
             element: <CourseDetail />,
+          },
+          {
+            path: 'settings',
+            element: <Settings />,
           },
         ],
     },

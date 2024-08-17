@@ -6,11 +6,14 @@ import { Button } from "../components/ui/button"
 import CourseDetailSkeleton from "../components/skeletons/course-detail-skeleton"
 import { Card, CardContent, CardTitle } from "../components/ui/card"
 import { Separator } from "../components/ui/separator"
+import { useEffect } from "react"
 
 const CourseDetail = () => {
   const { courseId } = useParams()
   const navigate = useNavigate()
   const { data: course, isPending } = useGetCourse(courseId!)
+
+  useEffect(() => scrollTo({top: 0, behavior: 'smooth'}), [])
 
   if (isPending) return <CourseDetailSkeleton />
 

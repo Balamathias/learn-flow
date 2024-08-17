@@ -2,5 +2,9 @@ export interface Profile {
     id: string,
     user_id: string,
     email: string,
-    username: string
+    username: string,
+    created_at: string,
+    nickname?: string,
+    first_name?: string,
+    last_name?: string
 }

@@ -1,18 +1,15 @@
-import { Outlet, useNavigate } from "react-router-dom"
+import { Navigate, Outlet } from "react-router-dom"
 
 import Sidebar from "./dashboard/sidebar"
-import { useEffect } from "react"
 import Topbar from "./dashboard/topbar"
-import { auth } from "../firebase/config"
+import { useStore } from "../hooks/useStore"
 
 const Root = () => {
-  const navigate = useNavigate()
 
-  useEffect(() => {
-    if (!auth?.currentUser) {
-      navigate('/auth/sign-in')
-    }
-  }, [])
+  const user = useStore(state => state.currentUser)
+  
+  // Redirect user to /auth/sign-in
+  if (!user) return <Navigate to={'/auth/sign-in'} />
 
   return (
     <div className="min-h-screen relative bg-gray-100 w-full">

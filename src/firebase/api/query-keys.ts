@@ -6,4 +6,5 @@ export enum QUERY_KEYS {
     get_courses = 'get_courses',
     get_course = 'get_course',
     get_profile = 'get_profile',
+    update_profile = 'update_profile',
 }

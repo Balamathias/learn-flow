@@ -3,7 +3,7 @@ import { auth, db } from '../config'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { toast } from 'sonner'
 import { QUERY_KEYS } from './query-keys'
-import { addDoc, collection, doc, getDoc } from 'firebase/firestore'
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom'
 import { Profile } from '../../types/profile'
 
@@ -58,8 +58,9 @@ export const useGetProfile = () => useQuery({
     queryKey: [QUERY_KEYS.get_profile],
     queryFn: async () => {
         if (!auth.currentUser?.uid) return
-        const docRef = doc(db, "profile", auth?.currentUser?.uid);
-        const docSnap = await getDoc(docRef);
-        return {...docSnap.data(), id: docSnap.id} as Profile
+        const q = query(collection(db, "profile"), where("user_id", "==", auth.currentUser.uid))
+        const data = await getDocs(q)
+        console.log(data)
+        return data.docs.map(doc => ({...doc.data(), id: doc.id}))[0] as Profile
     }
 })

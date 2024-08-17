@@ -1,16 +1,12 @@
-import { Outlet, useNavigate } from "react-router-dom"
+import { Navigate, Outlet } from "react-router-dom"
 import MaxWidthWrapper from "./max-width-wrapper"
-import { auth } from "../firebase/config"
-import { useEffect } from "react"
+import { useStore } from "../hooks/useStore"
 
 const AuthRoot = () => {
-  const navigate = useNavigate()
+  const user = useStore(state => state.currentUser)
 
-  useEffect(() => {
-    if (auth?.currentUser?.uid) {
-      navigate('/dashboard')
-    }
-  }, [])
+  // Redirect user to /dashboard if he/she is logged in
+  if (user) return <Navigate to={'/dashboard'} />
 
   return (
     <MaxWidthWrapper className="flex flex-col-reverse md:flex-row w-full gap-4 min-h-screen items-center justify-center max-w-6xl">

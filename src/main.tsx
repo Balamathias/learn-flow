@@ -4,14 +4,17 @@ import './globals.css'
 import Routes from './components/routes.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'sonner'
+import { Provider } from './provider.tsx'
 
 const client = new QueryClient()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <QueryClientProvider client={client}>
-      <Routes />
-    </QueryClientProvider>
-    <Toaster richColors position='top-right'/>
+    <Provider>
+      <QueryClientProvider client={client}>
+        <Routes />
+      </QueryClientProvider>
+      <Toaster richColors position='top-right'/>
+    </Provider>
   </StrictMode>,
 )

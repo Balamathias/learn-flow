@@ -14,7 +14,7 @@ const Topbar = () => {
         </div>
 
         <div className="flex flex-row items-center gap-x-2 gap-y-1">
-            <div className="flex flex-col">
+            <div className="md:flex flex-col hidden">
                 <h2 className="font-bold">{"Amarachi"}</h2>
                 <p className="text-muted-foreground -mt-1">Learner</p>
             </div>

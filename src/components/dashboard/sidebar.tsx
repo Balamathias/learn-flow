@@ -49,14 +49,14 @@ const Sidebar = () => {
           links.map(link => (
             <NavLink 
               to={link.href} 
-              className={({isActive}) => clsx("flex flex-row items-center p-2 py-2 gap-x-2 rounded-md hover:transition-all hover:bg-secondary hover:duration-300 hover:text-primary px-3.5", {"bg-primary hover:bg-primary/90 hover:opacity-75 hover:transition-all text-gray-100": isActive})} 
+              className={({isActive}) => clsx("flex flex-row items-center p-2 py-2 gap-x-2 rounded-md hover:transition-all hover:bg-secondary hover:duration-300 hover:text-primary px-3.5", {"bg-primary hover:bg-primary/90 hover:opacity-75 hover:transition-all text-gray-100": isActive && link?.title !== 'Logout'})} 
               key={link.title}
-              end
+              end={link?.href === '/dashboard'}
               onClick={link?.title === 'Logout' ? () => {setOpenLogoutModal(true)} : undefined}
             >
               {({isActive}) => (
                 <>
-                  <img src={link.icon} className={clsx("pointer-events-auto", {"invert hover:invert-0 pointer-events-auto": isActive})} />
+                  <img src={link.icon} className={clsx("pointer-events-auto", {"invert hover:invert-0 pointer-events-auto": isActive && link?.title !== 'Logout'})} />
                   <span className="pointer-events-auto">{link.title}</span>
                 </>
               )}

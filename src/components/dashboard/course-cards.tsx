@@ -24,7 +24,7 @@ const CourseCards = () => {
         <div className="mt-6 flex items-center justify-center">
           <Link 
             to={'all-courses'}
-            className="px-4 py-2.5 rounded-2xl bg-yellow-500 font-bold hover:bg-secondary hover:transition-all"
+            className="px-4 py-2.5 rounded-2xl bg-yellow-500 font-bold hover:bg-yellow-600 hover:transition-all"
           >
             View All Courses
           </Link>
