@@ -5,7 +5,7 @@ import CourseItem from "../components/dashboard/course-item"
 import CourseCardsSkeleton from "../components/skeletons/course-card-skeleton"
 
 const AllCourses = () => {
-  const { data: courses, isPending } = useGetCourses(10, 'created_at', 'desc')
+  const { data: courses, isPending } = useGetCourses(20, 'created_at', 'desc')
 
   if (isPending) return <CourseCardsSkeleton />
 

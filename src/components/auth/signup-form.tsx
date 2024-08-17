@@ -44,6 +44,7 @@ export default function SignUpForm() {
         const { email, password, username } = values
         if (password.trim() !== values?.confirm_password.trim()) {
           form.setError('confirm_password', {message: "Passwords do not match!"})
+          form.setError('password', {message: "Passwords do not match!"})
           return
         }
 

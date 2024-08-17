@@ -42,12 +42,17 @@ const UpdateProfileForm = ({ profile }: { profile: Profile | null | undefined })
     
     const onSubmit = (values: z.infer<typeof updateProfileSchema>) => {
 
-      updateProfile({
-        first_name: values?.first_name,
-        last_name: values?.last_name,
-        nickname: values?.nickname
-      }, {
-        onSuccess: () => toast.success('Account details updated successfully')
+      if (values?.new_password?.trim() !== values?.confirm_password?.trim()) {
+        form.setError('confirm_password', {message: "Passwords do not match!"})
+        form.setError('new_password', {message: "Passwords do not match!"})
+        return
+      }
+
+      updateProfile({...values}, {
+        onSuccess: () => {
+          toast.success('Account details updated successfully')
+          form.reset()
+        }
       })
     }
 
@@ -112,7 +117,7 @@ const UpdateProfileForm = ({ profile }: { profile: Profile | null | undefined })
                     <FormLabel>Current Password</FormLabel>
                     <FormControl>
                     <Input 
-                    type="text" 
+                    type="password" 
                     {...field} 
                     />
                     </FormControl>
@@ -149,6 +154,7 @@ const UpdateProfileForm = ({ profile }: { profile: Profile | null | undefined })
                     <FormControl>
                     <Input 
                         {...field} 
+                        type="password"
                     />
                     </FormControl>
                     <FormMessage />
@@ -164,6 +170,7 @@ const UpdateProfileForm = ({ profile }: { profile: Profile | null | undefined })
                     <FormControl>
                     <Input 
                         {...field} 
+                        type="password"
                     />
                     </FormControl>
                     <FormMessage />
