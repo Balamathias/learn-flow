@@ -1,11 +1,11 @@
 import { useGetCourses } from "../../firebase/api/course"
 import { Course } from "../../types/course"
+import ContinueLearningSkeleton from "../skeletons/continue-learning-skeleton"
 import { Card } from "../ui/card"
 import { Progress } from "../ui/progress"
-import { Skeleton } from "../ui/skeleton"
 
 const ContinueLearning = () => {
-  const { data: courses, isPending } = useGetCourses()
+  const { data: courses, isPending } = useGetCourses(2, "created_at", "desc")
 
   if (isPending) return <ContinueLearningSkeleton />
 
@@ -31,7 +31,7 @@ const LessonItem = ({ lesson }: { lesson: Course }) => {
 
             <div className="flex md:p-4 p-2.5 flex-col gap-y-2">
                 <h2 className="font-semibold text-lg">{lesson?.title}</h2>
-                <p className="text-muted-foreground">{lesson?.description}</p>
+                <p className="text-muted-foreground text-sm md:text-base">{lesson?.description}</p>
 
                 <Progress value={40 * 100 * Math.random()} className="bg-gray-100" />
             </div>
@@ -39,20 +39,5 @@ const LessonItem = ({ lesson }: { lesson: Course }) => {
     )
 }
 
-const ContinueLearningSkeleton = () => {
-    return (
-        <div className="flex flex-col gap-y-2">
-            <Skeleton className="h-6 w-full" />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                {
-                    [0,1].map(item => (
-                        <Skeleton key={item} className="h-24 w-full rounded-lg" />
-                    ))
-                }
-            </div>
-        </div>
-    )
-}
 
 export default ContinueLearning

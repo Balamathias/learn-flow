@@ -9,6 +9,8 @@ import AuthRoot from "./auth-root";
 import SignUp from "../pages/sign-up";
 import LandingPage from "../pages/landing-page";
 import CourseBuilder from "../pages/course-builder";
+import AllCourses from "../pages/all-courses";
+import CourseDetail from "../pages/course-detail";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
           {
             path: 'course-builder',
             element: <CourseBuilder />,
+          },
+          {
+            path: 'all-courses',
+            element: <AllCourses />,
+          },
+          {
+            path: 'all-courses/:courseId',
+            element: <CourseDetail />,
           },
         ],
     },

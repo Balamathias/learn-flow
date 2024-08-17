@@ -1,10 +1,11 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { auth, db } from '../config'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { toast } from 'sonner'
 import { QUERY_KEYS } from './query-keys'
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, doc, getDoc } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom'
+import { Profile } from '../../types/profile'
 
 const profileRef = collection(db, "profile")
 
@@ -21,10 +22,12 @@ export const useSignUp = () => useMutation({
     mutationKey: [QUERY_KEYS['sign-up']],
     mutationFn: async ({email, password, username}: { email: string, password: string, username: string }) => {
         const user = await createUserWithEmailAndPassword(auth, email, password)
+        /** Add a user's profile on Sign up. */
         await addDoc(profileRef, {
             email,
             username,
-            user_id: user?.user?.uid
+            user_id: user?.user?.uid,
+            created_at: new Date().toISOString()
         })
     },
     onError: (err) => toast.error(err?.message)
@@ -47,3 +50,16 @@ export const useSignOut = () => {
         })
 }
 
+/**
+ * @description Get User Profile
+ * @returns Profile
+ */
+export const useGetProfile = () => useQuery({
+    queryKey: [QUERY_KEYS.get_profile],
+    queryFn: async () => {
+        if (!auth.currentUser?.uid) return
+        const docRef = doc(db, "profile", auth?.currentUser?.uid);
+        const docSnap = await getDoc(docRef);
+        return {...docSnap.data(), id: docSnap.id} as Profile
+    }
+})

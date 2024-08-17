@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { QUERY_KEYS } from "./query-keys";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db, storage } from "../config";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { Course } from "../../types/course";
@@ -24,22 +24,48 @@ export const useAddCourse = () => useMutation({
         if (!data?.image || !data?.image?.name) return
         const courseImageStorageRef = ref(storage, 'course_images/'+ data?.image?.name)
 
+        /**
+         * Save Image to FireStorage
+         * Save the image link to courses accordingly.
+         */
         const uploadRef = await uploadBytes(courseImageStorageRef, data.image!)
         const url = await getDownloadURL(uploadRef.ref)
         await addDoc(courseRef, {
             title: data.title,
             description: data.description,
             image: url,
-            price: data.price
+            price: data.price,
+            created_at: new Date().toISOString()
         })
     },
     onError: (err) => toast.error(err?.message)
 })
 
-export const useGetCourses = () => useQuery({
-    queryKey: [QUERY_KEYS.get_courses],
+/**
+ * 
+ * @param count - Number of items to query at a time - optional but defaults to "10"
+ * @param ordering - Order by a particular field - optional - defaults to "created_at"
+ * @param order - Whether it should be in 'asc' or 'desc' order - optional - defaults to "asc"
+ * @returns type ```Course[]```
+ */
+export const useGetCourses = (count?: number, ordering?: keyof Course, order?: 'asc' | 'desc') => useQuery({
+    queryKey: [QUERY_KEYS.get_courses, count ?? 10, ordering ?? 'created_at', order ?? 'asc'],
     queryFn: async () => {
-        const data = await getDocs(courseRef)
+        const q = query(courseRef, orderBy(ordering || 'created_at', order ?? 'asc'), limit(count || 10))
+        const data = await getDocs(q)
         return data?.docs?.map(doc => ({...doc.data(), id: doc.id} as Course))
+    },
+})
+
+/**
+ * @description Get User Profile
+ * @returns Profile
+ */
+export const useGetCourse = (id: string) => useQuery({
+    queryKey: [QUERY_KEYS.get_course, id],
+    queryFn: async () => {
+        const docRef = doc(db, "courses", id);
+        const docSnap = await getDoc(docRef);
+        return {...docSnap.data(), id: docSnap.id} as Course
     }
 })

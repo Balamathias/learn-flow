@@ -1,17 +1,16 @@
 import { Outlet, useNavigate } from "react-router-dom"
 import MaxWidthWrapper from "./max-width-wrapper"
 import { auth } from "../firebase/config"
-import { onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react"
 
 const AuthRoot = () => {
   const navigate = useNavigate()
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
+
+  useEffect(() => {
+    if (auth?.currentUser?.uid) {
       navigate('/dashboard')
-    } else {
-      // User is signed out
     }
-  });
+  }, [])
 
   return (
     <MaxWidthWrapper className="flex flex-col-reverse md:flex-row w-full gap-4 min-h-screen items-center justify-center max-w-6xl">
