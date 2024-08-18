@@ -26,7 +26,7 @@ export const useSignUp = () => useMutation({
         await addDoc(profileRef, {
             email,
             username,
-            role: 'student',
+            role: 'student', // automatically set user role to 'student' which shall be used to determine if the currently logged in user is a learner or teacher or an admin, right?
             user_id: user?.user?.uid,
             created_at: new Date().toISOString()
         })
@@ -61,7 +61,6 @@ export const useGetProfile = () => useQuery({
         if (!auth.currentUser?.uid) return
         const q = query(collection(db, "profile"), where("user_id", "==", auth.currentUser.uid))
         const data = await getDocs(q)
-        console.log(data)
         return data.docs.map(doc => ({...doc.data(), id: doc.id}))[0] as Profile
     }
 })

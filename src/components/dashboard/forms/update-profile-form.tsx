@@ -20,9 +20,12 @@ import { useStore } from "../../../hooks/useStore"
 import { useUpdateProfile } from "../../../firebase/api/profile"
 import { Profile } from "../../../types/profile"
 import { Link } from "react-router-dom"
+import { useQueryClient } from "@tanstack/react-query"
+import { QUERY_KEYS } from "../../../firebase/api/query-keys"
 
 const UpdateProfileForm = ({ profile }: { profile: Profile | null | undefined }) => {
   const { mutate: updateProfile, isPending } = useUpdateProfile()
+  const queryClient = useQueryClient()
   
   const currentUser = useStore(state => state.currentUser)
 
@@ -54,6 +57,7 @@ const UpdateProfileForm = ({ profile }: { profile: Profile | null | undefined })
         onSuccess: () => {
           toast.success('Account details updated successfully')
           form.reset()
+          queryClient.invalidateQueries({queryKey: [QUERY_KEYS.get_profile]})
         }
       })
     }
