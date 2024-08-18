@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom"
 import Branding from "../branding"
-import clsx from "clsx"
 import { useState } from "react"
 import SignOutDialog from "./sign-out-dialog"
+import { cn } from "../../lib/utils"
 
 
 const links = [
@@ -28,7 +28,7 @@ const links = [
   },
   {
     title: 'Logout',
-    href: '/dashboard/#logout',
+    href: '#logout',
     icon: '/logout.png',
   },
 ]
@@ -42,19 +42,24 @@ const Sidebar = () => {
       <Branding isLink />
 
       <div className="flex flex-col gap-y-6 py-8">
+        <h2 className="text-muted-foreground">MENU</h2>
         {
           links.map(link => (
             <NavLink 
               to={link.href} 
-              className={({isActive}) => clsx("flex flex-row items-center p-2 py-2 gap-x-2 rounded-md hover:transition-all hover:bg-secondary hover:duration-300 hover:text-primary px-3.5", {"bg-primary hover:bg-primary/90 hover:opacity-75 hover:transition-all text-gray-100": isActive && link?.title !== 'Logout'})} 
+              className={({isActive}) => cn("flex flex-row items-center p-2 py-2 gap-x-2 rounded-md hover:transition-all hover:bg-secondary hover:duration-300 hover:text-primary px-3.5 relative", {"bg-primary hover:bg-primary/90 hover:opacity-75 hover:transition-all text-gray-100 hover:text-gray-200": isActive && link?.title !== 'Logout'})} 
               key={link.title}
               end={link?.href === '/dashboard'}
-              onClick={link?.title === 'Logout' ? () => {setOpenLogoutModal(true)} : undefined}
+              onClick={link?.title === 'Logout' ? (e) => {
+                setOpenLogoutModal(true)
+                e.preventDefault()
+              } : undefined}
             >
               {({isActive}) => (
                 <>
-                  <img src={link.icon} className={clsx("pointer-events-auto", {"invert hover:invert-0 pointer-events-auto": isActive && link?.title !== 'Logout'})} />
+                  <img src={link.icon} className={cn("pointer-events-auto", {"invert pointer-events-auto": isActive && link?.title !== 'Logout'})} />
                   <span className="pointer-events-auto">{link.title}</span>
+                  {isActive && link?.title !== 'Logout' && <span className="absolute -left-5 h-full w-1 bg-primary rounded-sm" />}
                 </>
               )}
             </NavLink>
@@ -63,7 +68,7 @@ const Sidebar = () => {
       </div>
       {
         openLogoutModal && (
-          <SignOutDialog />
+          <SignOutDialog open={openLogoutModal} onOpenChange={setOpenLogoutModal} />
         )
       }
     </nav>

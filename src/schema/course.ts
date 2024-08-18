@@ -1,10 +1,10 @@
 import { z } from "zod";
 
 export const addCourseSchema = z.object({
-    title: z.string(),
-    description: z.string(),
+    title: z.string().min(1, {message: "Title must be up to at least a character"}),
+    description: z.string().min(2),
     image: z.any(),
-    price: z.number(),
+    price: z.string().min(1),
 })
 
 export const updateProfileSchema = z.object({

@@ -7,7 +7,7 @@ const SignOutDialog = ({onOpenChange, open}: {open?: boolean, onOpenChange?: (bo
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent>
+        <DialogContent className="rounded-xl m-2">
             <DialogTitle className="font-bold py-2">Logout?</DialogTitle>
             <DialogDescription>
             You are about to logout of <b className="font-bold">LearnFlow</b>, Do you wish to proceed?

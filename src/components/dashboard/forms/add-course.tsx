@@ -33,13 +33,13 @@ const AddCourse = ({closeModal}: AddCourseProps) => {
         title: "",
         description: "",
         image: selectedFile ?? "",
-        price: 0
+        price: "0"
       },
     })
     
     const onSubmit = (values: z.infer<typeof addCourseSchema>) => {
       console.log(values)
-      addCourse({ ...values, image: selectedFile }, {
+      addCourse({ ...values, image: selectedFile, price: parseFloat(values.price) }, {
         onSuccess: () => {
           toast.success("New Course added successfully.")
           closeModal?.()
@@ -107,7 +107,7 @@ const AddCourse = ({closeModal}: AddCourseProps) => {
                 <FormControl>
                   <Input placeholder="Course Price..." type="text" 
                   {...field} 
-                  onChange={e => form.setValue("price", parseInt(e.target.value || "0"))}
+                  onChange={e => form.setValue("price", e.target.value)}
                   />
                 </FormControl>
                 <FormMessage />

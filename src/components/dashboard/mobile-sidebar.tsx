@@ -45,7 +45,7 @@ const MobileSidebar = () => {
     <Sheet open={openSheet} onOpenChange={setOpenSheet}>
         <SheetTrigger>
             <Button variant={'ghost'} size={'icon'}>
-                <LucideMenu size={24}/>
+                <LucideMenu size={28}/>
             </Button>
         </SheetTrigger>
         <SheetContent className="w-full max-w-[250px] h-full">
@@ -54,7 +54,7 @@ const MobileSidebar = () => {
                     mobileLinks.map(link => (
                         <NavLink 
                           to={link.href} 
-                          className={({isActive}) => cn("flex flex-row items-center p-2 py-2 gap-x-2 rounded-md hover:transition-all hover:bg-secondary hover:duration-300 hover:text-primary px-3.5", {"bg-primary hover:bg-primary/90 hover:opacity-75 text-gray-100": isActive && link?.title !== 'Logout'})} 
+                          className={({isActive}) => cn("flex flex-row items-center p-2 py-2 gap-x-2 rounded-md hover:transition-all hover:bg-secondary hover:duration-300 hover:text-primary px-3.5", {"bg-primary hover:opacity-75 text-gray-100": isActive && link?.title !== 'Logout'})} 
                           key={link.title}
                           end={link?.href === '/dashboard'}
                           onClick={link?.title === 'Logout' ? () => {

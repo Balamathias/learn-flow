@@ -6,6 +6,7 @@ import { Button } from "../../ui/button"
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,6 +19,7 @@ import { updateProfileSchema } from "../../../schema/course"
 import { useStore } from "../../../hooks/useStore"
 import { useUpdateProfile } from "../../../firebase/api/profile"
 import { Profile } from "../../../types/profile"
+import { Link } from "react-router-dom"
 
 const UpdateProfileForm = ({ profile }: { profile: Profile | null | undefined }) => {
   const { mutate: updateProfile, isPending } = useUpdateProfile()
@@ -122,6 +124,10 @@ const UpdateProfileForm = ({ profile }: { profile: Profile | null | undefined })
                     />
                     </FormControl>
                     <FormMessage />
+
+                    <FormDescription className="float-right justify-end">
+                      <Link to={'#'} className="underline hover:opacity-75 hover:transition-all">Can&#39;t remember password?</Link>
+                    </FormDescription>
                 </FormItem>
                 )}
             />
@@ -180,7 +186,7 @@ const UpdateProfileForm = ({ profile }: { profile: Profile | null | undefined })
           </section>
           
           <footer className="py-2">
-            <Button type="submit" variant={'secondary'} disabled={isPending} className="py-3 px-3.5 bg-yellow-500 text-primary text-pretty w-full rounded-full hover:bg-yellow-600 hover:transition-all" size={'lg'}>{isPending ? 'Processing...' : 'Save'}</Button>
+            <Button type="submit" variant={'secondary'} disabled={isPending} className="py-3 px-3.5 bg-yellow-500 text-primary text-pretty w-full rounded-full md:rounded-2xl md:w-[200px] hover:bg-yellow-600 hover:transition-all font-bold" size={'lg'}>{isPending ? 'Processing...' : 'Save'}</Button>
           </footer>
         </form>
       </Form>

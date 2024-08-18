@@ -10,7 +10,7 @@ const CourseItem = ({ course }: { course: Course }) => {
 
             <div className="flex p-3.5 md:p-6 flex-col gap-y-3">
                 <h2 className="font-bold text-lg md:text-xl">{course?.title}</h2>
-                <p className="text-muted-foreground font-semibold">{course?.description}</p>
+                <p className="text-muted-foreground ">{course?.description}</p>
 
                 <Separator />
                 <div className="flex flex-row justify-between w-full py-2.5">
