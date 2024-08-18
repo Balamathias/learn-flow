@@ -3,11 +3,19 @@ import MaxWidthWrapper from "../components/max-width-wrapper"
 import { useGetCourses } from "../firebase/api/course"
 import CourseItem from "../components/dashboard/course-item"
 import CourseCardsSkeleton from "../components/skeletons/course-card-skeleton"
+import Error from "../components/error"
+import { useEffect } from "react"
 
 const AllCourses = () => {
-  const { data: courses, isPending } = useGetCourses(20, 'created_at', 'desc')
+  const { data: courses, isPending, error, isError } = useGetCourses(20, 'created_at', 'desc')
+
+  useEffect(() => scrollTo({top: 0, behavior: "smooth"}), [])
 
   if (isPending) return <CourseCardsSkeleton />
+
+  if (isError) {
+    return <Error title={error?.message} description="" />
+  }
 
   return (
     <MaxWidthWrapper className="max-w-7xl gap-y-4 md:gap-y-6 md:mx-0 w-full justify-start">

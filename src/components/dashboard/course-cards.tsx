@@ -2,11 +2,16 @@ import { Link } from "react-router-dom"
 import { useGetCourses } from "../../firebase/api/course"
 import CourseCardsSkeleton from "../skeletons/course-card-skeleton"
 import CourseItem from "./course-item"
+import Error from "../error"
 
 const CourseCards = () => {
-  const { data: courses, isPending } = useGetCourses(4, 'created_at', 'asc')
+  const { data: courses, isPending, isError, error } = useGetCourses(4, 'created_at', 'asc')
 
   if (isPending) return <CourseCardsSkeleton />
+
+  if (isError) {
+    return <Error description={error?.message} />
+  }
 
   return (
     <div className="flex flex-col gap-y-2 py-8">

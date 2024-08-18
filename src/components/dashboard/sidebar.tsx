@@ -2,9 +2,7 @@ import { NavLink } from "react-router-dom"
 import Branding from "../branding"
 import clsx from "clsx"
 import { useState } from "react"
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogTitle } from "../ui/dialog"
-import { Button } from "../ui/button"
-import { useSignOut } from "../../firebase/api/auth"
+import SignOutDialog from "./sign-out-dialog"
 
 
 const links = [
@@ -38,7 +36,6 @@ const links = [
 const Sidebar = () => {
 
   const [openLogoutModal, setOpenLogoutModal] = useState(false)
-  const { mutate: signOut, isPending: isLoggingOut } = useSignOut()
 
   return (
     <nav className="md:flex w-[220px] z-20 fixed min-h-screen flex-col gap-y-4 scroll-auto p-5 hidden border-r border-r-secondary items-start bg-background">
@@ -66,17 +63,7 @@ const Sidebar = () => {
       </div>
       {
         openLogoutModal && (
-          <Dialog open={openLogoutModal} onOpenChange={setOpenLogoutModal}>
-            <DialogContent>
-              <DialogTitle className="font-bold py-2">Logout?</DialogTitle>
-              <DialogDescription>
-                You are about to logout of <b className="font-bold">LearnFlow</b>, Do you wish to proceed?
-              </DialogDescription>
-              <DialogFooter>
-                <Button onClick={() => signOut()} disabled={isLoggingOut}>{isLoggingOut ? 'Processing' : 'Proceed'}</Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+          <SignOutDialog />
         )
       }
     </nav>

@@ -30,7 +30,7 @@ const LessonItem = ({ lesson }: { lesson: Course }) => {
         <Card className="hover:opacity-70 hover:transition-all flex flex-row items-center gap-x-2.5 p-0 rounded-2xl max-h-36 shadow-none border-none cursor-pointer">
             <div className="relative h-full w-32">
                 <img src={lesson?.image} alt={lesson?.title} className="object-cover rounded-tl-2xl rounded-bl-2xl h-full w-full" />
-                <LucidePlayCircle className="absolute fill-gray-100 top-[40%] left-[40%]" size={32} />
+                <LucidePlayCircle className="absolute fill-gray-100 top-[40%] left-[38%]" size={32} />
             </div>
 
             <div className="flex md:p-4 p-2.5 flex-col gap-y-2">

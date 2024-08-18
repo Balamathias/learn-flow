@@ -7,15 +7,17 @@ import CourseDetailSkeleton from "../components/skeletons/course-detail-skeleton
 import { Card, CardContent, CardTitle } from "../components/ui/card"
 import { Separator } from "../components/ui/separator"
 import { useEffect } from "react"
+import Error from "../components/error"
 
 const CourseDetail = () => {
   const { courseId } = useParams()
   const navigate = useNavigate()
-  const { data: course, isPending } = useGetCourse(courseId!)
+  const { data: course, isPending, isError, error } = useGetCourse(courseId!)
 
   useEffect(() => scrollTo({top: 0, behavior: 'smooth'}), [])
 
   if (isPending) return <CourseDetailSkeleton />
+  if (isError) return <Error title={error?.message} description=""/>
 
   return (
     <MaxWidthWrapper className="!max-w-7xl gap-y-4 md:gap-y-4 !md:mx-0 w-full justify-start">
