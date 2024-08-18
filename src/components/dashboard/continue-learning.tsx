@@ -4,6 +4,7 @@ import { Course } from "../../types/course"
 import ContinueLearningSkeleton from "../skeletons/continue-learning-skeleton"
 import { Card } from "../ui/card"
 import { Progress } from "../ui/progress"
+import { trimString } from "../../lib/trim-string"
 
 const ContinueLearning = () => {
   const { data: courses, isPending } = useGetCourses(2, "created_at", "desc")
@@ -35,7 +36,7 @@ const LessonItem = ({ lesson }: { lesson: Course }) => {
 
             <div className="flex md:p-4 p-2.5 flex-col gap-y-2">
                 <h2 className="font-semibold text-lg">{lesson?.title}</h2>
-                <p className="text-muted-foreground text-sm md:text-base">{lesson?.description}</p>
+                <p className="text-muted-foreground text-sm md:text-base">{trimString(lesson?.description, 64)}</p>
 
                 <Progress value={40 * 100 * Math.random()} className="bg-gray-100" />
             </div>

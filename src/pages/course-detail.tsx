@@ -63,12 +63,12 @@ const CourseDetail = () => {
                     </div>
                     <Separator />
 
-                    <Button className="w-full rounded-full bg-yellow-500 hover:bg-gray-100 hover:transition-all mt-3 font-bold py-3" variant={'secondary'}>Buy Now</Button>
+                    <Button className="w-full rounded-full bg-yellow-500 hover:bg-primary hover:text-white hover:transition-all mt-3 font-bold py-3" variant={'secondary'}>Buy Now</Button>
                 </CardContent>
             </Card>
 
             <div className="flex py-2 items-center justify-center">
-                <Button variant={'outline'} className="w-full rounded-full mt-3 py-3 shadow-none bg-gray-200 border">Next Course</Button>
+                <Button variant={'outline'} className="w-full rounded-full mt-3 py-3 shadow-none hover:bg-primary hover:text-white bg-gray-200 border">Next Course</Button>
             </div>
         </div>
       </div>
