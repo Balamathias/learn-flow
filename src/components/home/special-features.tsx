@@ -19,7 +19,7 @@ const features = [
 const SpecialFeatures = () => {
   return (
     <section className="flex flex-col gap-y-6 md:gap-y-12 py-8 md:py-16 items-center justify-center max-w-7xl mx-auto p-4">
-        <h2 className="text-4xl tracking-wide font-bold leading-relaxed text-center">Special Features that makes our<br />online courses the best</h2>
+        <h2 className="text-2xl md:text-4xl tracking-wide font-bold leading-relaxed text-center">Special Features that makes our<br />online courses the best</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
             {
                 features.map(feature => (

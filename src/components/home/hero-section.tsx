@@ -6,7 +6,7 @@ const HeroSection = () => {
   return (
     <div className="w-full py-8 md:py-10 flex flex-col gap-y-6 items-center justify-center bg-[#222] text-center !pb-0">
 
-      <h2 className="text-6xl font-bold text-white leading-normal tracking-wide">
+      <h2 className="md:text-6xl text-3xl font-bold text-white leading-normal tracking-wide">
         The free, fun and effective <br />
         way to learn a language
       </h2>

@@ -12,7 +12,7 @@ const GettingStarted = () => {
                 />
             </div>
             <div className="flex flex-col gap-y-4 md:gap-y-10 justify-between">
-                <h2 className="font-bold text-3xl md:text-4xl tracking-wide">Collaborate & Learn with Our platform.</h2>
+                <h2 className="font-bold text-2xl md:text-4xl tracking-wide">Collaborate & Learn with Our platform.</h2>
                 <p className="text-muted-foreground text-base md:text-lg">
                     We offer a wide range of language courses taught by experienced and qualified instructors, who are passionate about teaching, and dedicated to helping you achieve your goals.
                 </p>
@@ -24,7 +24,7 @@ const GettingStarted = () => {
 
         <div className="grid gap-4 md:gap-5 grid-cols-1 md:grid-cols-2 items-center max-sm:flex max-sm:flex-col-reverse max-sm:w-full">
             <div className="flex flex-col gap-y-4 md:gap-y-10 justify-between">
-                <h2 className="font-bold text-3xl md:text-4xl tracking-wide">Propel your career & increase your knowledge base.</h2>
+                <h2 className="font-bold text-2xl md:text-4xl tracking-wide">Propel your career & increase your knowledge base.</h2>
                 <p className="text-muted-foreground text-base md:text-lg">
                     LearnFlow is an online course class that provides various categories of programming courses, ranging from System Engineering, Devops, Backend development, Frontend development, FullStack development, ML and AI.
                 </p>
