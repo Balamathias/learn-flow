@@ -3,8 +3,10 @@ import { Card } from "../components/ui/card"
 import { useState } from "react"
 import { Dialog, DialogContent, DialogTitle } from "../components/ui/dialog"
 import AddCourse from "../components/dashboard/forms/add-course"
+import { useMetadata } from "../hooks/useMetadat"
 
 const CourseBuilder = () => {
+  useMetadata({title: "Add a new course"})
   const [openModal, setModal] = useState(false)
   return (
     <div className="flex flex-col min-h-screen">

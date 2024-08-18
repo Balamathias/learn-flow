@@ -26,6 +26,7 @@ export const useSignUp = () => useMutation({
         await addDoc(profileRef, {
             email,
             username,
+            role: 'student',
             user_id: user?.user?.uid,
             created_at: new Date().toISOString()
         })

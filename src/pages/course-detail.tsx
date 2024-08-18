@@ -8,11 +8,14 @@ import { Card, CardContent, CardTitle } from "../components/ui/card"
 import { Separator } from "../components/ui/separator"
 import { useEffect } from "react"
 import Error from "../components/error"
+import { useMetadata } from "../hooks/useMetadat"
 
 const CourseDetail = () => {
   const { courseId } = useParams()
   const navigate = useNavigate()
   const { data: course, isPending, isError, error } = useGetCourse(courseId!)
+
+  useMetadata({title: course?.title || "Course Detail"})
 
   useEffect(() => scrollTo({top: 0, behavior: 'smooth'}), [])
 

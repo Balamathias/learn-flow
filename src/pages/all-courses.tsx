@@ -5,8 +5,12 @@ import CourseItem from "../components/dashboard/course-item"
 import CourseCardsSkeleton from "../components/skeletons/course-card-skeleton"
 import Error from "../components/error"
 import { useEffect } from "react"
+import { useMetadata } from "../hooks/useMetadat"
 
 const AllCourses = () => {
+  useMetadata({
+    title: "All Courses | LearnFlow"
+  })
   const { data: courses, isPending, error, isError } = useGetCourses(20, 'created_at', 'desc')
 
   useEffect(() => scrollTo({top: 0, behavior: "smooth"}), [])

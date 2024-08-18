@@ -2,9 +2,11 @@ import ContinueLearning from "../components/dashboard/continue-learning"
 import CourseCards from "../components/dashboard/course-cards"
 import MaxWidthWrapper from "../components/max-width-wrapper"
 import { Separator } from "../components/ui/separator"
+import { useMetadata } from "../hooks/useMetadat"
 
 
 const Dashboard = () => {
+  useMetadata({title: "Dashboard | Welcome to LearnFlow"})
   return (
     <MaxWidthWrapper className="max-w-7xl gap-y-4 md:gap-y-6 md:mx-0 w-full justify-start">
       <div className="flex flex-col gap-y-3 mb-7">

@@ -2,8 +2,11 @@ import { Link } from "react-router-dom"
 import Branding from "../components/branding"
 import { Card } from "../components/ui/card"
 import SignInForm from "../components/auth/signin-form"
+import { useMetadata } from "../hooks/useMetadat"
 
 const SignIn = () => {
+
+  useMetadata({title: "Sign In | LearnFlow"})
 
   return (
     <div className="flex flex-col gap-y-3">
