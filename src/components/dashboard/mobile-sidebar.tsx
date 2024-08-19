@@ -69,7 +69,6 @@ const MobileSidebar = () => {
                             <>
                               <img src={link.icon} className={cn("pointer-events-auto", {"invert hover:invert-0 pointer-events-auto": isActive && link?.title !== 'Logout'})} />
                               <span className="pointer-events-auto">{link.title}</span>
-                              {isActive && link?.title !== 'Logout' && <span className="absolute -left-5 h-full w-1 bg-primary rounded-sm" />}
                             </>
                           )}
                         </NavLink>
