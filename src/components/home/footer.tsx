@@ -10,7 +10,7 @@ const Footer = () => {
                 <div className="flex flex-col md:flex-row justify-between gap-4 w-full items-start">
                     <div className="flex flex-col gap-y-3">
                         <Branding invert isLink />
-                        <p className="text-gray-200">Top learning experiences that creates more talents <br />in the world.</p>
+                        <p className="text-gray-200">Top learning experiences that creates more talents <br className="hidden md:block" />in the world.</p>
                     </div>
 
                     <div className="flex flex-row gap-x-4">

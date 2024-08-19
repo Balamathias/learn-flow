@@ -1,50 +1,48 @@
-# React + TypeScript + Vite
+# LearnFlow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+*LearnFlow* is a product of the **Programmers University**, led by ATO to guide students and persons willing to learn how to code through a career path, to enable them land their dream jobs, or to help them fulfill their ever pondered dreams and passions.
 
-Currently, two official plugins are available:
+## Tech Stack
+Some major technology used in building  this client application is not far from these options:
+* React + Typescript with Vite (No SSR)
+* Firebase as a BaaS, as well as an authentication system `firebase/auth`, `firebase/firestore`, `firebase/storage`
+* Zustand + React-Query as global and highly mutable state managers respectively
+* Shadcn-UI for a few built it components like `Sheet`, `Dialog` and `Forms`
+* Zod + React Hook forms for proper form validation
+* Sonner - A beautiful toast library for realtime updates.
+* TailwindCSS for out-of-the box styling.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The entry point to the application is the `main.tsx` file in the `/src` folder. Although the major `Routes` component is imported from `@/components/routes.tsx` file. The `Routes` component is also wrappeed within a `Provider` component for protected routes and authentication purpose, as well as setting the global state on mount.
 
-## Expanding the ESLint configuration
+The application can be said to have three `layouts`.
+The `home` route accessible at `/`. Although the major file responsible for this page can be found in `@/pages/landing-page.tsx`. It's corresponding components can be found in the `@/components/home` folder.
+* The first layout is the home layout... which is accessible to both authenticated and non-authenticated users.
+* The second layout is not far from the file `@/components/auth-root.tsx`. It is banned for authenticated users.
+* Finally is the `root.tsx` layout which wraps around all the `/dashboard` routes. It is banned for non-authenticated users.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The data fetchers and all the apis communicating with firebase, exposed via a react-query custom hooks can be found in the `@/firebase/api` folder. The name of the files corresponds to what apis they interact with.
 
-- Configure the top-level `parserOptions` property like this:
+I also implemented a few custom hooks, which are all accessible at `@/hooks`. These hooks do not interact with firebase per se - but browser APIs and the likes.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Every page has its file in the `@/pages` folder. Their corresponding partial components can be found in the `@/components` or `@/components/dashboard` folders as the case may be.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+To get started or to run it locally, you can start by:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```git clone https://github.com/balamathias/learn-flow.git```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+You can also access the live site on [https://learn-flow-three.vercel.app](https://learn-flow-three.vercel.app)
+
+```cd learn-flow```
+
+Next, run `npm install`
+
+Request for a `.env` file from me: `balamathias05@gmail.com`.
+
+```npm run dev```
+
+Visit [http://localhost:5173](http://localhost:5173), to see the site.
+
+```Tada! Start editing, but ensure you don't make typescript errors!```
+
+**That's all for now**
+
