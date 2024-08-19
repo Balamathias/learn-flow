@@ -48,8 +48,9 @@ const MobileSidebar = () => {
                 <LucideMenu size={28}/>
             </Button>
         </SheetTrigger>
-        <SheetContent className="w-full max-w-[250px] h-full">
+        <SheetContent className="w-full max-w-[250px] h-full md:hidden">
             <div className="flex flex-col gap-y-4 py-6 md:py-8">
+              <h2 className="text-muted-foreground">MENU</h2>
                 {
                     mobileLinks.map(link => (
                         <NavLink 
@@ -68,6 +69,7 @@ const MobileSidebar = () => {
                             <>
                               <img src={link.icon} className={cn("pointer-events-auto", {"invert hover:invert-0 pointer-events-auto": isActive && link?.title !== 'Logout'})} />
                               <span className="pointer-events-auto">{link.title}</span>
+                              {isActive && link?.title !== 'Logout' && <span className="absolute -left-5 h-full w-1 bg-primary rounded-sm" />}
                             </>
                           )}
                         </NavLink>

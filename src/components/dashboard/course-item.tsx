@@ -6,7 +6,7 @@ import { trimString } from "../../lib/trim-string"
 
 const CourseItem = ({ course }: { course: Course }) => {
     return (
-        <Link to={`/dashboard/all-courses/${course.id}`} className="hover:opacity-70 bg-card hover:transition-all rounded-none flex flex-col gap-y-4 gap-x-2.5 p-0 rounded-tl-2xl rounded-tr-2xl shadow-none border-none cursor-pointer">
+        <Link to={`/dashboard/all-courses/${course.id}`} className="hover:opacity-70 bg-card hover:transition-all rounded-none flex flex-col gap-y-4 gap-x-2.5 p-0 rounded-tl-2xl rounded-tr-2xl shadow-none border-none cursor-pointer justify-between">
             <img src={course?.image} alt={course?.title} className="h-72 w-full object-cover rounded-tl-2xl rounded-tr-2xl" />
 
             <div className="flex p-3.5 md:p-6 flex-col gap-y-3">

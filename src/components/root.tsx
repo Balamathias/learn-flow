@@ -16,7 +16,7 @@ const Root = () => {
         <Sidebar />
         <main className="flex flex-col gap-y-4 w-full overflow-y-auto relative">
             <Topbar />
-            <div className="md:ml-[220px] p-4 md:p-10">
+            <div className="md:ml-[220px] p-4 md:p-10 mt-16">
               <Outlet />
             </div>
         </main>

@@ -10,7 +10,7 @@ const Topbar = () => {
   const { data: profile } = useGetProfile()
   
   return (
-    <nav className='bg-background h-16 w-full flex flex-row items-center justify-between sticky top-0 p-4'>
+    <nav className='bg-background h-16 w-full flex flex-row items-center justify-between fixed top-0 p-4 z-20'>
         <div>
             <div className="md:hidden flex">
                 <Branding isLink />
@@ -21,7 +21,7 @@ const Topbar = () => {
             <div className="flex flex-row items-center gap-x-2 gap-y-1">
                 <div className="md:flex flex-col hidden">
                     <h2 className="font-bold">{profile?.username ?? 'Learner'}</h2>
-                    <p className="text-muted-foreground -mt-1">{'Learner'}</p>
+                    <p className="text-muted-foreground -mt-1.5 text-xs">{'Learner'}</p>
                 </div>
                 <Avatar>
                     <AvatarImage src="/user.png" />

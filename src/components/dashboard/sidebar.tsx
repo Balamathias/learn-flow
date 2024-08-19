@@ -38,7 +38,7 @@ const Sidebar = () => {
   const [openLogoutModal, setOpenLogoutModal] = useState(false)
 
   return (
-    <nav className="md:flex w-[220px] z-20 fixed min-h-screen flex-col gap-y-4 scroll-auto p-5 hidden border-r border-r-secondary items-start bg-background">
+    <nav className="md:flex w-[220px] z-30 fixed min-h-screen flex-col gap-y-4 scroll-auto p-5 hidden border-r border-r-secondary items-start bg-background">
       <Branding isLink />
 
       <div className="flex flex-col gap-y-6 py-8">
