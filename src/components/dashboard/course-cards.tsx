@@ -18,7 +18,7 @@ const CourseCards = () => {
         <h2 className="text-xl font-bold">Language Courses</h2>
         <p className="text-muted-foreground text-lg">Choose from many of our courses and learn with Industry experts.</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4 md:gap-8">
             {
                 courses?.map(course => (
                     <CourseItem key={course?.id} course={course} />
